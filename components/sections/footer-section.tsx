@@ -11,7 +11,7 @@ export function FooterSection({ className }: FooterSectionProps) {
   return (
     <footer
       className={cn(
-        "relative border-t border-zinc-800/50 bg-zinc-950 px-6 py-8",
+        "relative border-t border-zinc-800/50 bg-zinc-950 py-8 px-4 sm:px-6 lg:px-8",
         className
       )}
     >
