@@ -6,7 +6,7 @@ import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import { AnimatedGridPattern } from "@/components/ui/animated-grid-pattern";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 interface HeroSectionProps {
   className?: string;
@@ -17,15 +17,19 @@ export function HeroSection({ className }: HeroSectionProps) {
   const dotAnim = { y: [0, 8, 0], opacity: [1, 0.5, 1] };
   const fadeInUp = { opacity: 1, y: 0 };
   const fadeInUpInitial = { opacity: 0, y: 20 };
-  const scaleInInitial = { opacity: 0, scale: 0.9 };
-  const scaleIn = { opacity: 1, scale: 1 };
   const fadeIn = { opacity: 1 };
   const fadeInInitial = { opacity: 0 };
+
+  const getStartedLink = () => {
+    const baseUrl = siteConfig.cta.primary.href;
+    const separator = baseUrl.includes("?") ? "&" : "?";
+    return `${baseUrl}${separator}invite_code=${siteConfig.invite.code}`;
+  };
 
   return (
     <section
       className={cn(
-        "relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-zinc-950 px-4 py-20",
+        "relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-zinc-950 px-6 py-16",
         className
       )}
     >
@@ -42,24 +46,18 @@ export function HeroSection({ className }: HeroSectionProps) {
 
       <div className="relative z-10 mx-auto flex max-w-5xl flex-col items-center text-center">
         <motion.div
-          initial={scaleInInitial}
-          animate={scaleIn}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
         >
-          <a
-            href={siteConfig.invite.link}
-            className="group inline-flex items-center gap-2 rounded-full border border-zinc-700 bg-zinc-900/50 px-4 py-2 text-sm text-zinc-200 backdrop-blur-sm transition-all hover:bg-zinc-800/50"
-          >
-            <Sparkles className="h-4 w-4 text-emerald-400" />
-            <span className="text-sm">
-              {siteConfig.invite.title}：{siteConfig.invite.code}
-            </span>
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </a>
+          <span className="inline-flex items-center gap-2 rounded-full border border-zinc-700/50 bg-zinc-900/30 px-4 py-1.5 text-xs text-zinc-400 backdrop-blur-sm">
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse" />
+            限时邀请码：AI2026
+          </span>
         </motion.div>
 
         <motion.h1
-          className="mt-8 bg-gradient-to-b from-zinc-100 via-zinc-100 to-zinc-400 bg-clip-text text-5xl font-bold tracking-tight text-transparent sm:text-6xl md:text-7xl lg:text-8xl"
+          className="mt-10 bg-gradient-to-b from-zinc-100 via-zinc-100 to-zinc-400 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl md:text-6xl lg:text-7xl"
           initial={fadeInUpInitial}
           animate={fadeInUp}
           transition={{ duration: 0.6, delay: 0.3 }}
@@ -76,7 +74,7 @@ export function HeroSection({ className }: HeroSectionProps) {
         </motion.h1>
 
         <motion.p
-          className="mt-6 max-w-2xl text-lg text-zinc-400 sm:text-xl"
+          className="mt-6 max-w-2xl text-base text-zinc-400 sm:text-lg"
           initial={fadeInUpInitial}
           animate={fadeInUp}
           transition={{ duration: 0.6, delay: 0.45 }}
@@ -89,31 +87,24 @@ export function HeroSection({ className }: HeroSectionProps) {
         </motion.p>
 
         <motion.div
-          className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-center"
+          className="mt-10"
           initial={fadeInUpInitial}
           animate={fadeInUp}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
           <ShimmerButton
-            href={siteConfig.cta.primary.href}
+            href={getStartedLink()}
             shimmerColor="rgba(6, 182, 212, 0.6)"
             background="linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%)"
-            className="text-lg px-8 py-4"
+            className="text-base px-10 py-3.5"
           >
             {siteConfig.cta.primary.text}
             <ArrowRight className="h-5 w-5" />
           </ShimmerButton>
-
-          <a
-            href={siteConfig.cta.secondary.href}
-            className="inline-flex items-center justify-center gap-2 rounded-full border border-zinc-700 bg-zinc-900/50 px-8 py-4 text-lg font-medium text-zinc-200 backdrop-blur-sm transition-all hover:bg-zinc-800/50"
-          >
-            {siteConfig.cta.secondary.text}
-          </a>
         </motion.div>
 
         <motion.div
-          className="mt-16 flex flex-wrap justify-center gap-6 text-sm text-zinc-500"
+          className="mt-12 flex flex-wrap justify-center gap-8 text-sm text-zinc-500"
           initial={fadeInInitial}
           animate={fadeIn}
           transition={{ duration: 0.6, delay: 0.75 }}
@@ -132,7 +123,7 @@ export function HeroSection({ className }: HeroSectionProps) {
       </div>
 
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2"
         animate={scrollAnim}
         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
       >
