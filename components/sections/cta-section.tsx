@@ -4,8 +4,6 @@ import { siteConfig } from "@/config";
 import { cn } from "@/lib/utils";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { AnimatedGridPattern } from "@/components/ui/animated-grid-pattern";
-import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 interface CTASectionProps {
@@ -13,11 +11,6 @@ interface CTASectionProps {
 }
 
 export function CTASection({ className }: CTASectionProps) {
-  const { ref, isVisible } = useScrollAnimation({
-    threshold: 0.2,
-    once: true,
-  });
-
   const getStartedLink = () => {
     const baseUrl = siteConfig.cta.primary.href;
     const separator = baseUrl.includes("?") ? "&" : "?";
@@ -27,7 +20,7 @@ export function CTASection({ className }: CTASectionProps) {
   return (
     <section
       className={cn(
-        "relative overflow-hidden bg-zinc-950 px-6 py-24 sm:px-8 sm:py-32",
+        "relative overflow-hidden bg-zinc-950 py-24 px-4 sm:px-6 lg:px-8",
         className
       )}
     >
@@ -43,22 +36,16 @@ export function CTASection({ className }: CTASectionProps) {
       />
 
       <div className="relative z-10 mx-auto max-w-4xl">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 30 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="relative rounded-3xl border border-zinc-800 bg-gradient-to-b from-zinc-900/80 to-zinc-900/40 p-8 sm:p-12 md:p-16 backdrop-blur-sm"
-        >
+        <div className="relative rounded-3xl border border-zinc-800 bg-gradient-to-b from-zinc-900/80 to-zinc-900/40 p-8 sm:p-12 md:p-16 backdrop-blur-sm">
           <div className="text-center">
-            <h2 className="mb-6 text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl md:text-5xl">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-zinc-100 mb-6">
               准备好开始了吗？
             </h2>
-            <p className="mx-auto mb-10 max-w-2xl text-lg text-zinc-400 leading-relaxed">
+            <p className="text-lg text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed">
               注册账号，立即开始使用 {siteConfig.name} 的所有功能
             </p>
 
-            <div className="flex flex-col items-center justify-center">
+            <div className="flex justify-center">
               <ShimmerButton
                 href={getStartedLink()}
                 shimmerColor="rgba(6, 182, 212, 0.6)"
@@ -70,7 +57,7 @@ export function CTASection({ className }: CTASectionProps) {
               </ShimmerButton>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
