@@ -14,8 +14,6 @@ interface ShimmerButtonProps {
   borderRadius?: string;
   shimmerDuration?: string;
   background?: string;
-  className?: string;
-  children?: React.ReactNode;
 }
 
 export function ShimmerButton({
@@ -28,13 +26,12 @@ export function ShimmerButton({
   shimmerDuration = "3s",
   borderRadius = "100px",
   background = "radial-gradient(ellipse 80% 50% at 50% 0%,hsl(var(--primary)/20) 0%,transparent 60%)",
-  ...props
 }: ShimmerButtonProps) {
   const buttonContent = (
     <motion.button
       onClick={onClick}
       className={cn(
-        "group relative flex cursor-pointer overflow-hidden whitespace-nowrap border border-white/20 px-6 py-3 text-white transition-all duration-300 hover:scale-105",
+        "group relative flex cursor-pointer overflow-hidden whitespace-nowrap border border-white/20 px-6 py-3 text-white transition-all duration-300",
         className
       )}
       style={{
@@ -46,7 +43,6 @@ export function ShimmerButton({
       } as React.CSSProperties}
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
-      {...props}
     >
       <div
         className="absolute inset-0 overflow-hidden"
