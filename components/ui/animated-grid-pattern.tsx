@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useId, useMemo } from "react";
 
 interface AnimatedGridPatternProps {
   width?: number;
@@ -31,29 +31,20 @@ export function AnimatedGridPattern({
   className,
   squaresClassName,
 }: AnimatedGridPatternProps) {
-  const [renderedSquares, setRenderedSquares] = useState<
-    Array<{
-      id: number;
-      pos: [number, number];
-      opacity: number;
-    }>
-  >([]);
+  const patternId = useId();
 
-  useEffect(() => {
+  const renderedSquares = useMemo(() => {
     const numSquares = squares[0] * squares[1];
-    const newSquares = Array.from({ length: numSquares }, (_, i) => ({
-      id: i,
-      pos: [i % squares[0], Math.floor(i / squares[0])] as [number, number],
-      opacity: Math.random() * maxOpacity,
-    }));
-    setRenderedSquares(newSquares);
+    return Array.from({ length: numSquares }, (_, i) => {
+      const opacity = (i / numSquares) * maxOpacity;
+      return {
+        id: i,
+        pos: [i % squares[0], Math.floor(i / squares[0])] as [number, number],
+        opacity,
+        targetOpacity: ((i + 1) / numSquares) * maxOpacity * 0.8,
+      };
+    });
   }, [squares, maxOpacity]);
-
-  const generateId = () => {
-    return Math.random().toString(36).substring(2, 11);
-  };
-
-  const patternId = generateId();
 
   return (
     <svg
@@ -92,11 +83,7 @@ export function AnimatedGridPattern({
           y={square.pos[1] * height + y + 1}
           initial={{ opacity: square.opacity }}
           animate={{
-            opacity: [
-              square.opacity,
-              Math.random() * maxOpacity,
-              square.opacity,
-            ],
+            opacity: [square.opacity, square.targetOpacity, square.opacity],
           }}
           transition={{
             duration,
