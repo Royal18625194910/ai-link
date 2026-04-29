@@ -6,7 +6,7 @@ import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { AnimatedGridPattern } from "@/components/ui/animated-grid-pattern";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Check } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 interface CTASectionProps {
   className?: string;
@@ -18,10 +18,16 @@ export function CTASection({ className }: CTASectionProps) {
     once: true,
   });
 
+  const getStartedLink = () => {
+    const baseUrl = siteConfig.cta.primary.href;
+    const separator = baseUrl.includes("?") ? "&" : "?";
+    return `${baseUrl}${separator}invite_code=${siteConfig.invite.code}`;
+  };
+
   return (
     <section
       className={cn(
-        "relative overflow-hidden bg-zinc-950 px-6 py-24 sm:px-8 sm:py-32",
+        "relative overflow-hidden bg-zinc-950 px-6 py-16 sm:px-8 sm:py-24",
         className
       )}
     >
@@ -42,65 +48,27 @@ export function CTASection({ className }: CTASectionProps) {
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="relative rounded-3xl border border-zinc-800 bg-gradient-to-b from-zinc-900/80 to-zinc-900/40 p-8 sm:p-12 md:p-16 backdrop-blur-sm"
+          className="relative rounded-2xl border border-zinc-800 bg-gradient-to-b from-zinc-900/80 to-zinc-900/40 p-8 sm:p-12 backdrop-blur-sm"
         >
-          <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 px-5 py-2 text-sm text-cyan-300 border border-cyan-500/30">
-              <Sparkles className="h-4 w-4" />
-              限时优惠
-            </span>
-          </div>
-
-          <div className="pt-8 text-center">
-            <h2 className="mb-6 text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl md:text-5xl">
+          <div className="pt-4 text-center">
+            <h2 className="mb-4 text-2xl font-bold tracking-tight text-zinc-100 sm:text-3xl md:text-4xl">
               准备好开始了吗？
             </h2>
-            <p className="mx-auto mb-10 max-w-2xl text-lg text-zinc-400 leading-relaxed">
-              注册账号，立即获得免费额度。使用邀请码{" "}
-              <span className="font-semibold text-cyan-400">
-                {siteConfig.invite.code}
-              </span>
-              ，额外享受 {siteConfig.invite.description}
+            <p className="mx-auto mb-8 max-w-2xl text-base text-zinc-400 leading-relaxed">
+              注册账号，立即开始使用 {siteConfig.name} 的所有功能
             </p>
 
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-center">
+            <div className="flex flex-col items-center justify-center">
               <ShimmerButton
-                href={siteConfig.cta.primary.href}
+                href={getStartedLink()}
                 shimmerColor="rgba(6, 182, 212, 0.6)"
                 background="linear-gradient(135deg, rgba(6, 182, 212, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%)"
-                className="text-lg px-10 py-4"
+                className="text-base px-10 py-3.5"
               >
                 {siteConfig.cta.primary.text}
                 <ArrowRight className="h-5 w-5" />
               </ShimmerButton>
-
-              <a
-                href={siteConfig.cta.secondary.href}
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-zinc-700 bg-zinc-900/50 px-8 py-4 text-lg font-medium text-zinc-200 backdrop-blur-sm transition-all hover:bg-zinc-800/50"
-              >
-                {siteConfig.cta.secondary.text}
-              </a>
             </div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={isVisible ? { opacity: 1 } : {}}
-              transition={{ delay: 0.5 }}
-              className="mt-12 flex flex-wrap justify-center gap-8 text-sm text-zinc-500"
-            >
-              <div className="flex items-center gap-2">
-                <Check className="h-5 w-5 text-emerald-400" />
-                <span>无需信用卡</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Check className="h-5 w-5 text-emerald-400" />
-                <span>免费额度 $5</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Check className="h-5 w-5 text-emerald-400" />
-                <span>按量付费</span>
-              </div>
-            </motion.div>
           </div>
         </motion.div>
       </div>
