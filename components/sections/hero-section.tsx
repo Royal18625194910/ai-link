@@ -29,7 +29,7 @@ export function HeroSection({ className }: HeroSectionProps) {
   return (
     <section
       className={cn(
-        "relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-zinc-950 px-6 py-16",
+        "relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-zinc-950 px-4 py-16",
         className
       )}
     >
@@ -45,22 +45,11 @@ export function HeroSection({ className }: HeroSectionProps) {
       />
 
       <div className="relative z-10 mx-auto flex max-w-5xl flex-col items-center text-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
-        >
-          <span className="inline-flex items-center gap-2 rounded-full border border-zinc-700/50 bg-zinc-900/30 px-4 py-1.5 text-xs text-zinc-400 backdrop-blur-sm">
-            <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse" />
-            限时邀请码：AI2026
-          </span>
-        </motion.div>
-
         <motion.h1
-          className="mt-10 bg-gradient-to-b from-zinc-100 via-zinc-100 to-zinc-400 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl md:text-6xl lg:text-7xl"
+          className="bg-gradient-to-b from-zinc-100 via-zinc-100 to-zinc-400 bg-clip-text text-5xl font-bold tracking-tight text-transparent sm:text-6xl md:text-7xl lg:text-8xl"
           initial={fadeInUpInitial}
           animate={fadeInUp}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
           <span className="block">大模型</span>
           <span className="block">
@@ -74,10 +63,10 @@ export function HeroSection({ className }: HeroSectionProps) {
         </motion.h1>
 
         <motion.p
-          className="mt-6 max-w-2xl text-base text-zinc-400 sm:text-lg"
+          className="mt-6 max-w-2xl text-lg text-zinc-400 sm:text-xl"
           initial={fadeInUpInitial}
           animate={fadeInUp}
-          transition={{ duration: 0.6, delay: 0.45 }}
+          transition={{ duration: 0.6, delay: 0.35 }}
         >
           {siteConfig.tagline}
           <br />
@@ -90,13 +79,13 @@ export function HeroSection({ className }: HeroSectionProps) {
           className="mt-10"
           initial={fadeInUpInitial}
           animate={fadeInUp}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
         >
           <ShimmerButton
             href={getStartedLink()}
             shimmerColor="rgba(6, 182, 212, 0.6)"
             background="linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%)"
-            className="text-base px-10 py-3.5"
+            className="text-lg px-8 py-4"
           >
             {siteConfig.cta.primary.text}
             <ArrowRight className="h-5 w-5" />
@@ -104,10 +93,10 @@ export function HeroSection({ className }: HeroSectionProps) {
         </motion.div>
 
         <motion.div
-          className="mt-12 flex flex-wrap justify-center gap-8 text-sm text-zinc-500"
+          className="mt-16 flex flex-wrap justify-center gap-6 text-sm text-zinc-500"
           initial={fadeInInitial}
           animate={fadeIn}
-          transition={{ duration: 0.6, delay: 0.75 }}
+          transition={{ duration: 0.6, delay: 0.65 }}
         >
           {[
             { label: "模型支持", value: "30+" },
@@ -123,7 +112,7 @@ export function HeroSection({ className }: HeroSectionProps) {
       </div>
 
       <motion.div
-        className="absolute bottom-6 left-1/2 -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
         animate={scrollAnim}
         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
       >
