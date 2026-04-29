@@ -6,7 +6,7 @@ import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { AnimatedGridPattern } from "@/components/ui/animated-grid-pattern";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, Check } from "lucide-react";
 
 interface CTASectionProps {
   className?: string;
@@ -21,7 +21,7 @@ export function CTASection({ className }: CTASectionProps) {
   return (
     <section
       className={cn(
-        "relative overflow-hidden bg-zinc-950 px-4 py-20 sm:py-32",
+        "relative overflow-hidden bg-zinc-950 px-6 py-24 sm:px-8 sm:py-32",
         className
       )}
     >
@@ -42,20 +42,20 @@ export function CTASection({ className }: CTASectionProps) {
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="relative rounded-2xl border border-zinc-800 bg-gradient-to-b from-zinc-900/80 to-zinc-900/40 p-8 sm:p-12 backdrop-blur-sm"
+          className="relative rounded-3xl border border-zinc-800 bg-gradient-to-b from-zinc-900/80 to-zinc-900/40 p-8 sm:p-12 md:p-16 backdrop-blur-sm"
         >
           <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 px-4 py-1.5 text-sm text-cyan-300 border border-cyan-500/30">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 px-5 py-2 text-sm text-cyan-300 border border-cyan-500/30">
               <Sparkles className="h-4 w-4" />
               限时优惠
             </span>
           </div>
 
-          <div className="pt-6 text-center">
-            <h2 className="mb-4 text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl md:text-5xl">
+          <div className="pt-8 text-center">
+            <h2 className="mb-6 text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl md:text-5xl">
               准备好开始了吗？
             </h2>
-            <p className="mx-auto mb-8 max-w-2xl text-lg text-zinc-400">
+            <p className="mx-auto mb-10 max-w-2xl text-lg text-zinc-400 leading-relaxed">
               注册账号，立即获得免费额度。使用邀请码{" "}
               <span className="font-semibold text-cyan-400">
                 {siteConfig.invite.code}
@@ -86,24 +86,18 @@ export function CTASection({ className }: CTASectionProps) {
               initial={{ opacity: 0 }}
               animate={isVisible ? { opacity: 1 } : {}}
               transition={{ delay: 0.5 }}
-              className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-zinc-500"
+              className="mt-12 flex flex-wrap justify-center gap-8 text-sm text-zinc-500"
             >
               <div className="flex items-center gap-2">
-                <svg className="h-4 w-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
+                <Check className="h-5 w-5 text-emerald-400" />
                 <span>无需信用卡</span>
               </div>
               <div className="flex items-center gap-2">
-                <svg className="h-4 w-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
+                <Check className="h-5 w-5 text-emerald-400" />
                 <span>免费额度 $5</span>
               </div>
               <div className="flex items-center gap-2">
-                <svg className="h-4 w-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
+                <Check className="h-5 w-5 text-emerald-400" />
                 <span>按量付费</span>
               </div>
             </motion.div>

@@ -56,15 +56,15 @@ function ModelCard({ model, index }: ModelCardProps) {
         gradientColor="rgba(139, 92, 246, 0.4)"
         gradientOpacity={0.15}
       >
-        <div className="relative flex h-full flex-col p-6">
-          <div className="mb-4 flex items-start justify-between">
+        <div className="relative flex h-full flex-col p-8">
+          <div className="mb-6 flex items-start justify-between">
             <div
               className={cn(
-                "flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br",
+                "flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br",
                 model.color
               )}
             >
-              <span className="text-lg font-bold text-white">
+              <span className="text-xl font-bold text-white">
                 {model.name.charAt(0)}
               </span>
             </div>
@@ -74,27 +74,27 @@ function ModelCard({ model, index }: ModelCardProps) {
           <h3 className="mb-1 text-xl font-semibold text-zinc-100">
             {model.name}
           </h3>
-          <p className="mb-3 text-sm text-zinc-500">{model.provider}</p>
+          <p className="mb-4 text-sm text-zinc-500">{model.provider}</p>
 
-          <p className="mb-4 flex-1 text-sm leading-relaxed text-zinc-400">
+          <p className="mb-6 flex-1 text-base leading-relaxed text-zinc-400">
             {model.description}
           </p>
 
-          <div className="flex flex-wrap gap-2 mb-4">
+          <div className="flex flex-wrap gap-2 mb-6">
             {model.tags.map((tag) => (
               <span
                 key={tag}
-                className="inline-flex items-center rounded-full bg-zinc-800/50 px-2.5 py-1 text-xs text-zinc-300"
+                className="inline-flex items-center rounded-full bg-zinc-800/50 px-3 py-1.5 text-xs text-zinc-300"
               >
                 {tag}
               </span>
             ))}
           </div>
 
-          <div className="mt-auto pt-4 border-t border-zinc-800/50">
+          <div className="mt-auto pt-5 border-t border-zinc-800/50">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-zinc-500">起步价</span>
-              <span className="text-sm font-medium text-cyan-400">
+              <span className="text-sm text-zinc-500">起步价</span>
+              <span className="text-base font-medium text-cyan-400">
                 {model.price}
               </span>
             </div>
@@ -118,19 +118,19 @@ export function ModelShowcaseSection({ className }: ModelShowcaseSectionProps) {
   return (
     <section
       className={cn(
-        "relative bg-zinc-900/50 px-4 py-20 sm:py-32",
+        "relative bg-zinc-900/50 px-6 py-24 sm:px-8 sm:py-32",
         className
       )}
     >
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-7xl">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          className="mb-20 text-center"
         >
-          <h2 className="mb-4 text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl md:text-5xl">
+          <h2 className="mb-6 text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl md:text-5xl">
             支持
             <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               {" "}
@@ -144,7 +144,7 @@ export function ModelShowcaseSection({ className }: ModelShowcaseSectionProps) {
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+          className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
           variants={container}
           initial="hidden"
           animate={isVisible ? "show" : "hidden"}
@@ -162,7 +162,7 @@ export function ModelShowcaseSection({ className }: ModelShowcaseSectionProps) {
           initial={{ opacity: 0 }}
           animate={isVisible ? { opacity: 1 } : {}}
           transition={{ delay: 0.8 }}
-          className="mt-12 text-center"
+          className="mt-16 text-center"
         >
           <p className="text-zinc-500">
             还有更多模型持续接入中...

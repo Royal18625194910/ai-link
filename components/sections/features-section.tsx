@@ -51,18 +51,18 @@ function FeatureCard({ feature, index }: FeatureCardProps) {
       transition={{ delay: index * 0.1 }}
     >
       <MagicCard
-        className="h-full p-6 transition-transform hover:scale-[1.02]"
+        className="h-full p-8 transition-transform hover:scale-[1.02]"
         gradientColor="rgba(6, 182, 212, 0.4)"
         gradientOpacity={0.15}
       >
-        <div className="flex flex-col gap-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20">
-            {Icon && <Icon className="h-6 w-6 text-cyan-400" />}
+        <div className="flex flex-col gap-5">
+          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20">
+            {Icon && <Icon className="h-7 w-7 text-cyan-400" />}
           </div>
           <h3 className="text-xl font-semibold text-zinc-100">
             {feature.title}
           </h3>
-          <p className="text-sm leading-relaxed text-zinc-400">
+          <p className="text-base leading-relaxed text-zinc-400">
             {feature.description}
           </p>
         </div>
@@ -84,19 +84,19 @@ export function FeaturesSection({ className }: FeaturesSectionProps) {
   return (
     <section
       className={cn(
-        "relative bg-zinc-950 px-4 py-20 sm:py-32",
+        "relative bg-zinc-950 px-6 py-24 sm:px-8 sm:py-32",
         className
       )}
     >
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-7xl">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          className="mb-20 text-center"
         >
-          <h2 className="mb-4 text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl md:text-5xl">
+          <h2 className="mb-6 text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl md:text-5xl">
             为什么选择
             <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
               {" "}
@@ -109,7 +109,7 @@ export function FeaturesSection({ className }: FeaturesSectionProps) {
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+          className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
           variants={container}
           initial="hidden"
           animate={isVisible ? "show" : "hidden"}
